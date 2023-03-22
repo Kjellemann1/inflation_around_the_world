@@ -30,7 +30,7 @@ bar_plot = px.bar()
 options_line_plot = [{'label' : x, 'value' : x} for x in sorted(list(inflation['country'].unique()))]
 options_bar_plot = [{'label' : x, 'value' : x} for x in sorted(list(inflation['year'].unique()), reverse = True)]
 
-# #### Dash Application
+# Dash Application
 load_figure_template('bootstrap')
 dbc_css = 'https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates@V1.0.2/dbc.min.css'
 app = Dash(__name__,external_stylesheets=[dbc.themes.QUARTZ, dbc_css])
@@ -120,7 +120,8 @@ def line_plot_func(countries, data = inflation):
     ).update_layout(
         xaxis_title = None, yaxis_title = 'Inflation', legend_title_text = None,
         font = dict(size = 16), 
-        template = 'simple_white'
+        template = 'simple_white',
+        margin = dict(l = 10, r = 10, t = 10, b = 10)
     ).update_xaxes(
         rangeslider_visible = True, nticks = 10
     )
@@ -140,10 +141,10 @@ def bar_plot_func(year, ascdesc, data = inflation):
     ).update_layout(
         xaxis_title = None, yaxis_title = 'Inflation', legend_title_text = None,
         font = dict(size = 16), 
-        template = 'simple_white'
+        template = 'simple_white',
+        margin = dict(l = 10, r = 10, t = 10, b = 10)
     )
     return bar_plot
 
 if __name__ == '__main__':
     app.run_server()
-
