@@ -10,21 +10,7 @@ from pandas_datareader import wb
 from dash.dependencies import Input, Output
 from dash import dcc, html, dash_table, Dash
 
-# Getting inflation data
-inflation = pandas_datareader.wb.download(indicator = 'FP.CPI.TOTL.ZG', country = 'all', start = '1900', end = '2023').reset_index()
-inflation.rename(columns = {'FP.CPI.TOTL.ZG' : 'inflation'}, inplace = True)
-inflation
-
-# Adding iso3c country codes
-countries = pandas_datareader.wb.get_countries()[['iso3c', 'name']].copy()
-inflation = pd.merge(inflation, countries, left_on = 'country', right_on = 'name').iloc[:, :4]
-inflation.dropna(inplace = True)
-inflation
-
-# Adding rank column for table in dash application
-inflation['rank'] = inflation.groupby('year')['inflation'].rank(method = 'first', ascending = False)
-inflation.sort_values(['year'], inplace = True)
-inflation['rank'] = inflation['rank'].astype(int)
+inflation = pd.read_csv('inflation.csv')
 
 # Making animated map plot
 map_plot = px.choropleth(
@@ -72,7 +58,7 @@ app.layout = dbc.Container(
                         dcc.Dropdown(
                             options = options_bar_plot,
                             id = 'bar_plot_input_year',
-                            value = '2021'
+                            value = 2021
                         )
                     ]),
                     dbc.Col([
@@ -113,7 +99,7 @@ app.layout = dbc.Container(
                 dash_table.DataTable(
                     id = 'table', 
                     columns = [{'name': x, 'id': x} for x in inflation.columns],
-                    data = inflation[inflation['year'] == '2021'].sort_values(['inflation'], ascending = False).to_dict('records'),
+                    data = inflation[inflation['year'] == 2021].sort_values(['inflation'], ascending = False).to_dict('records'),
                     style_cell = {'textAlign': 'left'}, page_size = 17
                 )
             )
