@@ -3,10 +3,8 @@
 
 import pandas as pd
 import plotly.express as px
-import pandas_datareader
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template
-from pandas_datareader import wb
 from dash.dependencies import Input, Output
 from dash import dcc, html, dash_table, Dash
 
