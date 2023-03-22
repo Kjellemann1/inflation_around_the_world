@@ -1,0 +1,8 @@
+pandas
+plotly.express
+pandas-datareader
+dash-bootstrap-components
+dash-bootstrap-templates
+dash.dependencies
+dash
+gunicorn
