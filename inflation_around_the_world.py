@@ -34,6 +34,7 @@ options_bar_plot = [{'label' : x, 'value' : x} for x in sorted(list(inflation['y
 load_figure_template('bootstrap')
 dbc_css = 'https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates@V1.0.2/dbc.min.css'
 app = Dash(__name__,external_stylesheets=[dbc.themes.QUARTZ, dbc_css])
+server = app.server
 app.layout = dbc.Container(
     children=[
         dcc.Markdown('# Inflation Around the World', style={'textAlign': 'center'}),
@@ -144,5 +145,5 @@ def bar_plot_func(year, ascdesc, data = inflation):
     return bar_plot
 
 if __name__ == '__main__':
-    app.run_server(debug = False)
+    app.run_server()
 
