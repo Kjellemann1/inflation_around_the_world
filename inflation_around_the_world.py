@@ -1,6 +1,9 @@
 #### Inflation Around the World #### 
 # Application Development in Python - Mandatory Assignment
 
+import os
+os.chdir('C:/Users/Kjell/Onedrive/Programming/github/dash/inflation_around_the_world/')
+
 import pandas as pd
 import plotly.express as px
 import dash_bootstrap_components as dbc
@@ -77,13 +80,13 @@ app.layout = dbc.Container(
             dbc.Col([ # Line plot
                 dcc.Graph(id = 'line_plot_output',
                             config = {'responsive' : True},
-                            style = {'height' : '45vh', 'padding' : '1rem'}
+                            style = {'height' : '650px', 'padding' : '1rem'}
                 )
             ]),
             dbc.Col([ # Bar plot
                 dcc.Graph(id = 'bar_plot_output',
                             config = {'responsive' : True},
-                            style = {'height' : '45vh', 'padding' : '1rem'}
+                            style = {'height' : '650px', 'padding' : '1rem'}
                 )
             ]),
         ]),
@@ -91,7 +94,7 @@ app.layout = dbc.Container(
             dbc.Col( # Map plot
                 dcc.Graph(figure = map_plot,
                             config = {'responsive' : True},
-                            style = {'height' : '45vh', 'padding' : '1rem'}
+                            style = {'height' : '650px', 'padding' : '1rem'}
                 )
             ),
             dbc.Col( # Table
