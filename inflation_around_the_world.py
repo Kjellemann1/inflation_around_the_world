@@ -1,9 +1,6 @@
 #### Inflation Around the World #### 
 # Application Development in Python - Mandatory Assignment
 
-import os
-os.chdir('C:/Users/Kjell/Onedrive/Programming/github/dash/inflation_around_the_world/')
-
 import pandas as pd
 import plotly.express as px
 import dash_bootstrap_components as dbc
